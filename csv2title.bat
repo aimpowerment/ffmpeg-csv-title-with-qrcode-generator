@@ -2,6 +2,10 @@ chcp 1252
 @echo off
 setlocal enabledelayedexpansion
 
+rem VON DER CSV ALLE TEXTFELDER IN EINFACHEN HOCHKOMMA (') UND FELDER MIT KOMMA (,) TRENNEN SOWIE IM WINDOWS-1252 ZEICHENSATZ SPEICHERN
+rem ACHTUNG BEI PFAD ANGABEN DEN DOPPELPUNKT UND BACKSLAHES ESCAPEN UND DOPPEL HOCHKOMMATA: ("C\:\\PFAD\\ZUR\\SCHRIFT.TTF")
+rem BEIM SPEICHERN IN OFFICE TEXTTRENNZEICHEN ENTFERNEN !!! SONST MERFACH HOCHKOMMA !!!
+rem DIE TIME VARIABLE t KANN ZUM ANIMIEREN IM CSV GENUTZT WERDEN.
 set input_csv=filelist.csv
 set output_video=output.mp4
 set temp_dir=temp_videos
@@ -54,10 +58,13 @@ for /f "tokens=1-29 delims=," %%A in (%input_csv%) do (
     set alpha1="alpha='if(lt(t,!fadeStart1!),0,if(lt(t,!fadeIn1!),(t-!fadeStart1!)/1,if(lt(t,!fadeDuration1!),1,if(lt(t,!fullDuration1!),(!fadeOut1!-(t-!fadeDuration1!))/!fadeOut1!,0))))'"
     set alpha2="alpha='if(lt(t,!fadeStart2!),0,if(lt(t,!fadeIn2!),(t-!fadeStart2!)/1,if(lt(t,!fadeDuration2!),1,if(lt(t,!fullDuration2!),(!fadeOut2!-(t-!fadeDuration2!))/!fadeOut2!,0))))'"
     rem Erzeuge QR-Code-Bild
-    qrcode -o qr_temp.png -s !qr_size! "!qr_text!"
+    qrcode -o qr_temp.png -m 1 -d 120 -s !qr_size! "!qr_text!"
 
-    rem Füge QR-Code-Bild zu Video hinzu
-	call ffmpeg -f lavfi -i "color=c=black:s=1024x768:d=!duration!" !bgo! -i qr_temp.png -filter_complex "!bgi! overlay=x=!qr_pos_x!:y=!qr_pos_y!,fade=t=in:st=!qr_fade_in_start!:d=!qr_fade_in_duration!:alpha=0,fade=out:st=!qr_fade_out_start!:d=!qr_fade_out_duration!:alpha=0,drawtext=text='!text1!':fontcolor=!text_color1!:fontsize=!text_size1!:x=!x1!:y=!y1!:fontfile=!font1!:!alpha1!,drawtext=text='!text2!':fontcolor=!text_color2!:fontsize=!text_size2!:x=!x2!:y=!y2!:fontfile=!font2!:!alpha2!" -c:a copy -t !duration! -y -an %temp_dir%\temp_!rdnr!.mp4
+
+
+    rem Füge QR-Code-Bild zu Video hinzu und erstelle die Textfelder samt Parameter 
+    rem :y_align=font für jedes Textfeld angeben um fixe Zeilenhöhe zu gewährleisten
+	call ffmpeg -f lavfi -i "color=c=black:s=1920x1080:d=!duration!" !bgo! -i qr_temp.png -filter_complex "!bgi! overlay=x=!qr_pos_x!:y=!qr_pos_y!,fade=t=in:st=!qr_fade_in_start!:d=!qr_fade_in_duration!:alpha=0,fade=out:st=!qr_fade_out_start!:d=!qr_fade_out_duration!:alpha=0,drawtext=text='!text1!':fontcolor=!text_color1!:fontsize=!text_size1!:x=!x1!:y=!y1!:fontfile=!font1!:!alpha1!:y_align=font,drawtext=text='!text2!':fontcolor=!text_color2!:fontsize=!text_size2!:x=!x2!:y=!y2!:fontfile=!font2!:!alpha2!:y_align=font" -c:a copy -t !duration! -y -an %temp_dir%\temp_!rdnr!.mp4
 
     echo file '%temp_dir%\temp_!rdnr!.mp4' >> temp_list.txt
     rem Lösche temporäres QR-Code-Bild
