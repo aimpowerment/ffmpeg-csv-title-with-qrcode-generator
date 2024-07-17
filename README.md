@@ -1,5 +1,5 @@
 # Titles with QR-Code from CSV
-Developed by [Alberto Sono](https://github.com/aimpowerment/ "Alberto Sono @ aimpowerment Dept.") for ![ffmpeg](https://github.com/BtbN/FFmpeg-Builds/releases "") & ![qrencode](https://github.com/fukuchi/libqrencode "")
+Developed by [Alberto Sono](https://github.com/aimpowerment/ "Alberto Sono @ aimpowerment Dept.") for ![ffmpeg](https://github.com/BtbN/FFmpeg-Builds/releases "ffmpeg") & ![qrencode](https://github.com/fukuchi/libqrencode "qrencode")
 
 **Description:**
 
