@@ -14,4 +14,4 @@ Please note the following when saving the csv file:
 * REMOVE TEXT SEPARATORS WHEN SAVING IN OFFICE !!! OTHERWISE JUST USE AN APOSTROPHE !!!
 * THE TIME VARIABLE t AND OTHER FFMPEG VARS CAN BE USED FOR ANIMATING IN CSV
 
-![nur ein Beispiel](https://commons.wikimedia.org/wiki/File:Example_de.jpg "Beispielbild")
+![CSV SAVE OPTIONS]([https://commons.wikimedia.org/wiki/File:Example_de.jpg "Beispielbild](https://github.com/aimpowerment/ffmpeg-csv-title-with-qrcode-generator/blob/main/csv_save_options.png?raw=true)")
