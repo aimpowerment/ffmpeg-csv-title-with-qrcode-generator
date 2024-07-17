@@ -1,4 +1,4 @@
-# Titles with QR-Code from CSV with FFMPEG
+# Titles with QR-Code from CSV
 by [Alberto Sono](https://github.com/aimpowerment/ "Alberto Sono @ aimpowerment Dept.")
 
 **Description:**
