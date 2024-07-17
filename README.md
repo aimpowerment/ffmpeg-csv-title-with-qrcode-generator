@@ -8,6 +8,10 @@ The [csv2title](https://github.com/aimpowerment/ffmpeg-csv-title-with-qrcode-gen
 **Important:**
 
 Please note the following when saving the csv file:
-All alphanumeric or strings are set in single inverted commas.
+* All alphanumeric or strings are set in single inverted commas.
+* SEPARATE ALL TEXT FIELDS FROM THE CSV IN SINGLE APOSTROPHE (') AND FIELDS WITH COMMA (,) AND SAVE IN WINDOWS-1252 CHARACTER SET
+* BE CAREFUL WHEN SPECIFYING THE PATH, ESCAPE THE COLON AND BACKSLAPS AND DOUBLE INVERTED COMMAS: (‘C\:\\PATH\\TO\\\TYPE.TTF’)
+* REMOVE TEXT SEPARATORS WHEN SAVING IN OFFICE !!! OTHERWISE JUST USE AN APOSTROPHE !!!
+THE TIME VARIABLE t CAN BE USED FOR ANIMATING IN CSV
 
 ![nur ein Beispiel](https://commons.wikimedia.org/wiki/File:Example_de.jpg "Beispielbild")
